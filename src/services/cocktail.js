@@ -14,9 +14,43 @@ export const getCocktailByName = async (name) => {
         const request = await dailyAxios.get(query)
         return request.data
     } catch (error) {
-        if (error.response && error.response.status === 404) {
-            return ''
-        }
         console.log(error)
+        throw new Error(error)
+    }
+}
+
+export const getCocktailByID = async(id) => {
+    let query = baseUrl + `id?id=${id}`
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    } catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}
+
+export const getCocktailRandom = async() => {
+    let query = baseUrl + 'random'
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    } catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}
+
+export const getCocktailByIngredient = async(ing) => {
+    let query = baseUrl + `/ingredient?name=${ing}`
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    }catch (error) {
+        console.log(error)
+        throw new Error(error)
     }
 }

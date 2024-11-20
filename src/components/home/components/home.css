@@ -1,0 +1,7 @@
+.home-card {
+    @apply relative h-full bg-cover flex flex-col justify-end items-center transition duration-300 hover:scale-[1.02];
+}
+
+.home-card-center {
+    background-position: center;
+}
