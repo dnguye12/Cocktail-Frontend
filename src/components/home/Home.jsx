@@ -6,7 +6,7 @@ import HomeRight from "../../public/right_home.png"
 
 const Home = () => {
     return (
-        <div className="grid grid-cols-3 gap-6 p-8 h-screen max-h-screen">
+        <div className="grid grid-cols-3 gap-6 p-8 h-screen max-h-screen bg-neutral-950">
             <Link className="home-card"
                 style={{
                     backgroundImage: `url(${HomeLeft})`,
@@ -16,7 +16,9 @@ const Home = () => {
 
             </Link>
 
-            <Link className="home-card home-card-center"
+            <Link 
+                to='/random-cocktails'
+                className="home-card home-card-center"
                 style={{
                     backgroundImage: `url(${HomeCenter})`,
                 }}

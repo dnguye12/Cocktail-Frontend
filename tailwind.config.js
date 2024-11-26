@@ -13,9 +13,13 @@ export default {
         "my-border": "#643337",
         "my-orange": "#ED722F",
         "my-dark-blue": "#00142D",
+        "my-blue": "#023e8a",
         "my-pink": "#f43f5e"
       },
     },
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ["dracula"]
+  }
 };

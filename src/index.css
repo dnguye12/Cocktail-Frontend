@@ -7,5 +7,14 @@
 @tailwind utilities;
 
 body {
-    @apply bg-my-bg font-poppins min-h-screen
+    @apply font-poppins min-h-screen
+}
+
+.my-card {
+    background: linear-gradient(155deg, rgb(24, 24, 24) 16.07%, rgba(24, 24, 24, 0) 125%);
+    @apply border border-neutral-700 rounded-2xl
+}
+
+.divider-accent {
+    @apply divider before:bg-accent after:bg-accent
 }

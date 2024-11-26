@@ -35,7 +35,7 @@ export const getCocktailRandom = async() => {
     let query = baseUrl + 'random'
 
     try {
-        const request = await dailyAxios.get(query)
+        const request = await axios.get(query)
         return request.data
     } catch (error) {
         console.log(error)
