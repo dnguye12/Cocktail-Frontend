@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Navbar from "../navbar/Navbar"
-import { getCocktailRandom } from "../../services/cocktail"
+import { getCocktailByID, getCocktailRandom } from "../../services/cocktail"
 import RandomCocktailsSkeleton from "./components/RandomCocktailsSkeleton"
 import LastCocktails from "./components/LastCocktails"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Footer from "../footer/Footer"
 
 const getRandomCocktail = async () => {
@@ -20,6 +20,7 @@ const getRandomCocktail = async () => {
 
 const RandomCocktails = () => {
     const navigate = useNavigate()
+    const cocktailId = useParams().cocktail
 
     const [cocktail, setCocktail] = useState(null)
     const [lastCocktails, setLastCocktails] = useState([])
@@ -28,6 +29,27 @@ const RandomCocktails = () => {
 
     const [checkedIngredients, setCheckedIngredients] = useState({})
     const [checkedInstructions, setCheckedInstructions] = useState({})
+
+    useEffect(() => {
+        if (cocktailId && !cocktail) {
+            const fetchCocktail = async () => {
+                try {
+                    const cock = await getCocktailByID(cocktailId)
+                    if (cock) {
+                        setCocktail(cock)
+                        setIsLoading(false)
+                        setShowIngredients(true)
+                        setCheckedIngredients({})
+                        setCheckedInstructions({})
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+            fetchCocktail()
+        }
+    }, [cocktail, cocktailId])
 
     const handleGetRandomCocktail = async () => {
         setIsLoading(true)
@@ -66,6 +88,15 @@ const RandomCocktails = () => {
             ...prev,
             [i]: !prev[i]
         }))
+    }
+
+    const handleClickOnLastCocktails = (cock) => {
+        setLastCocktails((prev) => {
+            const updatedLastCocktails = prev.filter((c) => c !== cock)
+            return [cocktail, ...updatedLastCocktails]
+        })
+        setCocktail(cock)
+        navigate(`/random-cocktails/${cock.id}`)
     }
 
     return (
@@ -191,7 +222,7 @@ const RandomCocktails = () => {
                 {
                     lastCocktails?.length > 0 &&
                     (
-                        <LastCocktails lastCocktails={lastCocktails} />
+                        <LastCocktails lastCocktails={lastCocktails} handleClickOnLastCocktails={handleClickOnLastCocktails} />
                     )
                 }
             </div>
