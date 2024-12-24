@@ -102,9 +102,9 @@ const RandomCocktails = () => {
     return (
         <div className="bg-neutral-950 flex flex-col min-h-screen">
             <Navbar />
-            <div className="flex-grow">
+            <div className="flex-grow px-6">
                 <div className="my-container my-8 flex justify-center items-center">
-                    <button className="btn btn-accent px-16 h-16 text-xl font-semibold shadow hover:scale-105 tooltip" data-tip="Click to generate another cocktail" onClick={handleGetRandomCocktail}>Generate a random cocktail</button>
+                    <button className="btn btn-accent w-full sm:px-16 h-16 text-xl font-semibold shadow hover:scale-105 tooltip" data-tip="Click to generate another cocktail" onClick={handleGetRandomCocktail}>Generate a random cocktail</button>
                 </div>
 
                 {
@@ -116,7 +116,7 @@ const RandomCocktails = () => {
                 {
                     !isLoading && cocktail &&
                     (
-                        <div className="my-container grid grid-cols-2 gap-6 pb-8" >
+                        <div className="my-container grid grid-cols-1 lg:grid-cols-2 gap-6 pb-8" >
                             <div className="my-card p-8 flex flex-col items-start">
                                 <img src={cocktail.strDrinkThumb} className="border border-neutral-700 rounded drop-shadow w-80 z-10 mx-auto" alt="" />
 

@@ -6,35 +6,69 @@ import HomeRight from "../../public/right_home.png"
 
 const Home = () => {
     return (
-        <div className="grid grid-cols-3 gap-6 p-8 h-screen max-h-screen bg-neutral-950">
-            <Link className="home-card shadow-md rounded"
+        <>
+            <div className="2xl:grid hidden 2xl:grid-cols-3 gap-6 p-8 h-screen max-h-screen bg-neutral-950">
+                <Link className="home-card shadow-md rounded"
+                    style={{
+                        backgroundImage: `url(${HomeLeft})`,
+                    }}
+                >
+                    <h1 className="absolute top-16 text-6xl text-my-pink font-boba font-semibold drop-shadow text-center">Search Cocktails <br /> By Name</h1>
+
+                </Link>
+
+                <Link
+                    to='/random-cocktails'
+                    className="home-card home-card-center shadow-md rounded"
+                    style={{
+                        backgroundImage: `url(${HomeCenter})`,
+                    }}
+                >
+                    <h1 className="absolute bottom-72 text-6xl text-my-orange font-boba font-semibold drop-shadow">Random Cocktail</h1>
+                </Link>
+
+                <Link className="home-card shadow-md rounded"
+                    style={{
+                        backgroundImage: `url(${HomeRight})`,
+                    }}
+                >
+                    <h1 className="absolute top-16 text-6xl text-my-dark-blue font-boba font-semibold drop-shadow text-center">Search Cocktails <br /> By Ingredients</h1>
+
+                </Link>
+            </div>
+
+
+
+            <div className="grid grid-cols-1 grid-rows-3 2xl:hidden gap-6 p-8 h-screen max-h-screen bg-neutral-950">
+                <Link className="home-card home-card-center shadow-md rounded flex justify-center items-center"
                 style={{
-                    backgroundImage: `url(${HomeLeft})`,
+                    background: "linear-gradient(90deg, rgba(3,25,59,1) 40%, rgba(88,101,242,1) 100%)"
                 }}
-            >
-                <h1 className="absolute top-16 text-6xl text-my-pink font-boba font-semibold drop-shadow text-center">Search Cocktails <br/> By Name</h1>
+                >
+                    <h1 className="text-4xl sm:text-6xl text-my-pink font-boba font-semibold drop-shadow text-center">Search Cocktails <br /> By Name</h1>
+                </Link>
 
-            </Link>
+                <Link
+                    to='/random-cocktails'
+                    className="home-card home-card-center shadow-md rounded flex justify-center items-center bg-red-900"
+                    style={{
+                        background: "linear-gradient(90deg, rgba(42,0,1,1) 40%, rgba(151,4,14,1) 100%)"
+                    }}
+                >
+                    <h1
+                        className="text-4xl sm:text-6xl text-my-orange font-boba font-semibold drop-shadow text-center"
+                    >Random Cocktail</h1>
+                </Link>
 
-            <Link 
-                to='/random-cocktails'
-                className="home-card home-card-center shadow-md rounded"
+                <Link className="home-card home-card-center shadow-md rounded flex justify-center items-center bg-pink-700"
                 style={{
-                    backgroundImage: `url(${HomeCenter})`,
+                    background: "linear-gradient(90deg, rgba(174,63,77,1) 40%, rgba(255,167,173,1) 100%)"
                 }}
-            >
-                <h1 className="absolute bottom-72 text-6xl text-my-orange font-boba font-semibold drop-shadow">Random Cocktail</h1>
-            </Link>
-
-            <Link className="home-card shadow-md rounded"
-                style={{
-                    backgroundImage: `url(${HomeRight})`,
-                }}
-            >
-                <h1 className="absolute top-16 text-6xl text-my-dark-blue font-boba font-semibold drop-shadow text-center">Search Cocktails <br/> By Ingredients</h1>
-
-            </Link>
-        </div>
+                >
+                    <h1 className="text-4xl sm:text-6xl text-my-dark-blue font-boba font-semibold drop-shadow text-center">Search Cocktails <br /> By Ingredients</h1>
+                </Link>
+            </div>
+        </>
     )
 }
 
