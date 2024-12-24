@@ -25,7 +25,7 @@ const RandomCocktails = () => {
     const [cocktail, setCocktail] = useState(null)
     const [lastCocktails, setLastCocktails] = useState([])
     const [showIngredients, setShowIngredients] = useState(true)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [checkedIngredients, setCheckedIngredients] = useState({})
     const [checkedInstructions, setCheckedInstructions] = useState({})
@@ -61,6 +61,7 @@ const RandomCocktails = () => {
                 }
                 setLastCocktails(updatedLastCocktails)
             }
+            setIsLoading(true)
             const cock = await getRandomCocktail();
             if (cock) {
                 setCocktail(cock);
@@ -68,6 +69,7 @@ const RandomCocktails = () => {
                 setCheckedIngredients({})
                 setCheckedInstructions({})
                 navigate(`/random-cocktails/${cock.id}`)
+                setIsLoading(false)
             }
         } catch (error) {
             console.log(error)
@@ -102,7 +104,7 @@ const RandomCocktails = () => {
     return (
         <div className="bg-neutral-950 flex flex-col min-h-screen">
             <Navbar />
-            <div className="flex-grow px-6">
+            <main className="flex-grow px-6">
                 <div className="my-container my-8 flex justify-center items-center">
                     <button className="btn btn-accent w-full sm:px-16 h-16 text-xl font-semibold shadow hover:scale-105 tooltip" data-tip="Click to generate another cocktail" onClick={handleGetRandomCocktail}>Generate a random cocktail</button>
                 </div>
@@ -225,7 +227,7 @@ const RandomCocktails = () => {
                         <LastCocktails lastCocktails={lastCocktails} handleClickOnLastCocktails={handleClickOnLastCocktails} />
                     )
                 }
-            </div>
+            </main>
             <Footer />
         </div>
     )
