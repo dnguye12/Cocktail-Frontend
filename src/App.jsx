@@ -13,6 +13,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/random-cocktails" element={<RandomCocktails />} />
+      <Route path="/random-cocktails/:cocktail/*" element={<RandomCocktails />} />
     </Routes>
   )
 }

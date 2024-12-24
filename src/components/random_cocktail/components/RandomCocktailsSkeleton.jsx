@@ -1,10 +1,10 @@
 const RandomCocktailsSkeleton = () => {
     return (
-        <div className="container max-w-7xl mx-auto grid grid-cols-2 gap-6 my-8" style={{
-            minHeight: "calc(100vh - 128px)"
+        <div className="my-container grid grid-cols-2 gap-6 pb-8" style={{
+            minHeight: "calc(100vh - 192px)"
         }}>
-            <div className="skeleton"></div>
-            <div className="skeleton"></div>
+            <div className="skeleton rounded-xl shadow-md"></div>
+            <div className="skeleton rounded-xl shadow-md"></div>
         </div>
     )
 }

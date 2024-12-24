@@ -7,7 +7,7 @@ import HomeRight from "../../public/right_home.png"
 const Home = () => {
     return (
         <div className="grid grid-cols-3 gap-6 p-8 h-screen max-h-screen bg-neutral-950">
-            <Link className="home-card"
+            <Link className="home-card shadow-md rounded"
                 style={{
                     backgroundImage: `url(${HomeLeft})`,
                 }}
@@ -18,7 +18,7 @@ const Home = () => {
 
             <Link 
                 to='/random-cocktails'
-                className="home-card home-card-center"
+                className="home-card home-card-center shadow-md rounded"
                 style={{
                     backgroundImage: `url(${HomeCenter})`,
                 }}
@@ -26,7 +26,7 @@ const Home = () => {
                 <h1 className="absolute bottom-72 text-6xl text-my-orange font-boba font-semibold drop-shadow">Random Cocktail</h1>
             </Link>
 
-            <Link className="home-card"
+            <Link className="home-card shadow-md rounded"
                 style={{
                     backgroundImage: `url(${HomeRight})`,
                 }}

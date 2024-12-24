@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Navbar from "../navbar/Navbar"
 import { getCocktailRandom } from "../../services/cocktail"
 import RandomCocktailsSkeleton from "./components/RandomCocktailsSkeleton"
+import LastCocktails from "./components/LastCocktails"
+import { useNavigate } from "react-router-dom"
+import Footer from "../footer/Footer"
 
 const getRandomCocktail = async () => {
     try {
@@ -16,7 +19,10 @@ const getRandomCocktail = async () => {
 }
 
 const RandomCocktails = () => {
+    const navigate = useNavigate()
+
     const [cocktail, setCocktail] = useState(null)
+    const [lastCocktails, setLastCocktails] = useState([])
     const [showIngredients, setShowIngredients] = useState(true)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -26,9 +32,20 @@ const RandomCocktails = () => {
     const handleGetRandomCocktail = async () => {
         setIsLoading(true)
         try {
+            if (cocktail) {
+                const updatedLastCocktails = [cocktail, ...lastCocktails]
+                if (updatedLastCocktails.length > 4) {
+                    updatedLastCocktails.pop()
+                }
+                setLastCocktails(updatedLastCocktails)
+            }
             const cock = await getRandomCocktail();
             if (cock) {
                 setCocktail(cock);
+                setShowIngredients(true)
+                setCheckedIngredients({})
+                setCheckedInstructions({})
+                navigate(`/random-cocktails/${cock.id}`)
             }
         } catch (error) {
             console.log(error)
@@ -52,8 +69,12 @@ const RandomCocktails = () => {
     }
 
     return (
-        <div className="bg-neutral-950">
+        <div className="bg-neutral-950 min-h-screen">
             <Navbar />
+
+            <div className="my-container my-8 flex justify-center items-center">
+                <button className="btn btn-accent px-16 h-16 text-xl font-semibold shadow hover:scale-105 tooltip" data-tip="Click to generate another cocktail" onClick={handleGetRandomCocktail}>Generate a random cocktail</button>
+            </div>
 
             {
                 isLoading && (
@@ -64,13 +85,17 @@ const RandomCocktails = () => {
             {
                 !isLoading && cocktail &&
                 (
-                    <div className="container max-w-5xl mx-auto grid grid-cols-2 gap-8 my-8" style={{
-                        minHeight: "calc(100vh - 128px)"
-                    }}>
+                    <div className="my-container grid grid-cols-2 gap-6 pb-8" >
                         <div className="my-card p-8 flex flex-col items-start">
                             <img src={cocktail.strDrinkThumb} className="border border-neutral-700 rounded drop-shadow w-80 z-10 mx-auto" alt="" />
 
-                            <div className="w-80 mx-auto mt-8">
+                            <div className="w-80 mx-auto mt-8 z-50 flex flex-col items-start">
+                                {
+                                    cocktail.IBA
+                                    && (
+                                        <h3 className="text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="International Bartenders Association category"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-medal" />{cocktail.IBA}</h3>
+                                    )
+                                }
                                 <h2 className="text-xl text-accent tooltip tooltip-accent font-medium" data-tip="Drink category">
                                     <FontAwesomeIcon className="mr-2" icon="fa-solid fa-tag" />{cocktail.category}
                                 </h2>
@@ -78,16 +103,16 @@ const RandomCocktails = () => {
                                     cocktail.isAlcoholic
                                         ?
                                         (
-                                            <p className="block text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-wine-bottle" />Alcoholic</p>
+                                            <h3 className="text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-wine-bottle" />Alcoholic</h3>
                                         )
                                         :
                                         (
-                                            <p className="block text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS NOT alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-bottle-water" />Non Alcoholic</p>
+                                            <h3 className="text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS NOT alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-bottle-water" />Non Alcoholic</h3>
                                         )
                                 }
                                 {
                                     cocktail.glass && (
-                                        <p className="text-xl text-accent font-medium tooltip tooltip-accent block text-start" data-tip="Recommended serving glass"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-martini-glass" />{cocktail.glass}</p>
+                                        <h3 className="text-xl text-accent font-medium tooltip tooltip-accent block text-start" data-tip="Recommended serving glass"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-martini-glass" />{cocktail.glass}</h3>
                                     )
                                 }
                             </div>
@@ -99,8 +124,8 @@ const RandomCocktails = () => {
                                 <h1 className="text-accent font-poppins text-5xl font-semibold drop-shadow text-center mb-6">{cocktail.name}</h1>
                                 <div className="w-full mb-6">
                                     <div className="flex justify-center items-center">
-                                        <button onClick={() => { setShowIngredients(true) }} className={`btn ${showIngredients ? "btn-accent" : "btn-ghost"} rounded-none transition duration-300 flex-1`}>Ingredients</button>
-                                        <button onClick={() => { setShowIngredients(false) }} className={`btn ${showIngredients ? "btn-ghost" : "btn-accent"} rounded-none transition duration-300 flex-1`}>Instructions</button>
+                                        <button onClick={() => { setShowIngredients(true) }} className={`btn ${showIngredients ? "btn-accent" : "btn-ghost"} rounded-none transition duration-300 flex-1 tooltip`} data-tip="Click to show the list of ingredients to make this cocktail">Ingredients</button>
+                                        <button onClick={() => { setShowIngredients(false) }} className={`btn ${showIngredients ? "btn-ghost" : "btn-accent"} rounded-none transition duration-300 flex-1 tooltip`} data-tip="Click to show the instruction to mix this cocktail.">Instructions</button>
                                     </div>
                                 </div>
                                 {
@@ -132,9 +157,9 @@ const RandomCocktails = () => {
                                                             if (ins !== "") {
                                                                 return (
                                                                     <tr key={idx} className="hover">
-                                                                        <td><input type="checkbox" className="checkbox" checked={checkedInstructions[idx] || false} onChange={() => handleInstructionsCheck(idx)}/></td>
+                                                                        <td><input type="checkbox" className="checkbox" checked={checkedInstructions[idx] || false} onChange={() => handleInstructionsCheck(idx)} /></td>
 
-                                                                        <td><span>{idx}.</span> {ins}.</td>
+                                                                        <td><span>{idx + 1}.</span> {ins}.</td>
 
                                                                     </tr>
                                                                 )
@@ -146,29 +171,31 @@ const RandomCocktails = () => {
                                         )
                                 }
                             </div>
-                            <div className="w-full px-8">
+                            <div className="w-full px-8 mt-6">
                                 {
                                     showIngredients
-                                    ?
-                                    (
-                                        <button className="btn btn-outline w-full border-neutral-700 hover:scale-[1.01] shadow">Start mixing</button>
-                                    )
-                                    :
-                                    (
-                                        <button className="btn btn-outline btn-accent hover:scale-[1.01] w-full shadow">Finish</button>
-                                    )
+                                        ?
+                                        (
+                                            <button onClick={() => { setShowIngredients(false) }} className="btn btn-outline w-full border-neutral-700 hover:scale-[1.01] hover:bg-accent shadow">Start mixing</button>
+                                        )
+                                        :
+                                        (
+                                            <button className="btn btn-outline btn-accent hover:scale-[1.01] w-full shadow">Finish</button>
+                                        )
                                 }
                             </div>
                         </div>
                     </div>
                 )
             }
-
-            <button className="btn" onClick={handleGetRandomCocktail}>Button</button>
-
             {
-                cocktail && <p>{cocktail.name}</p>
+                lastCocktails?.length > 0 &&
+                (
+                    <LastCocktails lastCocktails={lastCocktails} />
+                )
             }
+
+            <Footer />
         </div>
     )
 }

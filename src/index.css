@@ -12,9 +12,13 @@ body {
 
 .my-card {
     background: linear-gradient(155deg, rgb(24, 24, 24) 16.07%, rgba(24, 24, 24, 0) 125%);
-    @apply border border-neutral-700 rounded-2xl
+    @apply border border-neutral-700 rounded-xl shadow-md
 }
 
 .divider-accent {
     @apply divider before:bg-accent after:bg-accent
+}
+
+.my-container {
+    @apply container max-w-5xl mx-auto
 }
