@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import Navbar from "../navbar/Navbar"
 import { getCocktailByID, getCocktailRandom } from "../../services/cocktail"
+
+import Navbar from "../navbar/Navbar"
 import RandomCocktailsSkeleton from "./components/RandomCocktailsSkeleton"
 import LastCocktails from "./components/LastCocktails"
-import { useNavigate, useParams } from "react-router-dom"
 import Footer from "../footer/Footer"
+import Reviews from "./components/Reviews"
 
 const getRandomCocktail = async () => {
     try {
@@ -122,30 +124,30 @@ const RandomCocktails = () => {
                             <div className="my-card p-8 flex flex-col items-start">
                                 <img src={cocktail.strDrinkThumb} className="border border-neutral-700 rounded drop-shadow w-80 z-10 mx-auto" alt="" />
 
-                                <div className="w-80 mx-auto mt-8 z-50 flex flex-col items-start">
+                                <div className="w-80 mx-auto mt-6 z-50 flex flex-col items-start">
                                     {
                                         cocktail.IBA
                                         && (
-                                            <h3 className="text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="International Bartenders Association category"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-medal" />{cocktail.IBA}</h3>
+                                            <h3 className="text-start my-1 text-lg text-accent font-medium tooltip tooltip-accent" data-tip="International Bartenders Association category"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-medal" />{cocktail.IBA}</h3>
                                         )
                                     }
-                                    <h2 className="text-xl text-accent tooltip tooltip-accent font-medium" data-tip="Drink category">
+                                    <h2 className="text-lg text-accent tooltip tooltip-accent font-medium" data-tip="Drink category">
                                         <FontAwesomeIcon className="mr-2" icon="fa-solid fa-tag" />{cocktail.category}
                                     </h2>
                                     {
                                         cocktail.isAlcoholic
                                             ?
                                             (
-                                                <h3 className="text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-wine-bottle" />Alcoholic</h3>
+                                                <h3 className="text-start my-1 text-lg text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-wine-bottle" />Alcoholic</h3>
                                             )
                                             :
                                             (
-                                                <h3 className="text-start my-2 text-xl text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS NOT alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-bottle-water" />Non Alcoholic</h3>
+                                                <h3 className="text-start my-1 text-lg text-accent font-medium tooltip tooltip-accent" data-tip="This drink IS NOT alcoholic"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-bottle-water" />Non Alcoholic</h3>
                                             )
                                     }
                                     {
                                         cocktail.glass && (
-                                            <h3 className="text-xl text-accent font-medium tooltip tooltip-accent block text-start" data-tip="Recommended serving glass"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-martini-glass" />{cocktail.glass}</h3>
+                                            <h3 className="text-lg text-accent font-medium tooltip tooltip-accent block text-start" data-tip="Recommended serving glass"><FontAwesomeIcon className="mr-2" icon="fa-solid fa-martini-glass" />{cocktail.glass}</h3>
                                         )
                                     }
                                 </div>
@@ -218,6 +220,7 @@ const RandomCocktails = () => {
                                     }
                                 </div>
                             </div>
+
                         </div>
                     )
                 }
@@ -226,6 +229,9 @@ const RandomCocktails = () => {
                     (
                         <LastCocktails lastCocktails={lastCocktails} handleClickOnLastCocktails={handleClickOnLastCocktails} />
                     )
+                }
+                {
+                    cocktail && <Reviews cocktail={cocktail} />
                 }
             </main>
             <Footer />

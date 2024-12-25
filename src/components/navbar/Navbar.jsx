@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 
 const Navbar = () => {
-    const { isSignedIn, user, isLoaded } = useUser()
+    const { isSignedIn, user } = useUser()
     return (
         <div className="sticky top-0 left-0 h-16 border-b border-b-neutral-700 bg-black shadow z-50">
             <div className="navbar my-container">

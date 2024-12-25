@@ -9,7 +9,7 @@ const LastCocktails = ({ lastCocktails, handleClickOnLastCocktails }) => {
 
     return (
         <div className="my-container pb-8">
-            <h2 className=" text-4xl font-semibold shadow mb-6 lg:mb-4">Last generated cocktails</h2>
+            <h2 className=" text-3xl font-semibold shadow mb-6 lg:mb-4">Last generated cocktails</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
                 {
                     helper.map((cocktail) => {

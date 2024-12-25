@@ -8,7 +8,7 @@ const dailyAxios = setupCache(axios.create(), {
 });
 
 export const getCocktailByName = async (name) => {
-    let query = baseUrl + `name?name=${name}`
+    let query = baseUrl + `/cocktail/name?name=${name}`
 
     try {
         const request = await dailyAxios.get(query)
@@ -20,7 +20,7 @@ export const getCocktailByName = async (name) => {
 }
 
 export const getCocktailByID = async(id) => {
-    let query = baseUrl + `id?id=${id}`
+    let query = baseUrl + `/cocktail/id?id=${id}`
 
     try {
         const request = await dailyAxios.get(query)
@@ -32,7 +32,7 @@ export const getCocktailByID = async(id) => {
 }
 
 export const getCocktailRandom = async() => {
-    let query = baseUrl + 'random'
+    let query = baseUrl + '/cocktail/random'
 
     try {
         const request = await axios.get(query)
@@ -44,7 +44,7 @@ export const getCocktailRandom = async() => {
 }
 
 export const getCocktailByIngredient = async(ing) => {
-    let query = baseUrl + `/ingredient?name=${ing}`
+    let query = baseUrl + `/cocktail/ingredient?name=${ing}`
 
     try {
         const request = await dailyAxios.get(query)
