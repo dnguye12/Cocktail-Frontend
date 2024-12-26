@@ -32,8 +32,47 @@ export const postRating = async (user, cocktail, stars, comment) => {
     }
 }
 
+export const deleteRating = async (id) => {
+    let query = baseUrl + `/rating?id=${id}`
+
+    try {
+        const request = await axios.delete(query)
+        return request.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+export const updateRating = async (id, newContent, newRating) => {
+    let query = baseUrl + `/rating?id=${id}`
+
+    try {
+        const request = await axios.patch(query, {
+            newContent,
+            newRating
+        })
+        return request.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 export const getRatingByCocktail = async (cocktailId) => {
     let query = baseUrl + `/rating/by-cocktail?cocktailId=${cocktailId}`
+
+    try {
+        const request = await axios.get(query)
+        return request.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+export const getUserHasRatedCocktail = async (userId, cocktailId) => {
+    let query = baseUrl + `/rating/user-has-rated-cocktail?userId=${userId}&cocktailId=${cocktailId}`
 
     try {
         const request = await axios.get(query)
