@@ -94,8 +94,8 @@ const AllCocktails = () => {
                                     popular.map((cocktail) => (
                                         <a target="_blank" href={`/random-cocktails/${cocktail.id}`} key={`pop-${cocktail.id}`} className="group p-6 lg:p-4 my-card transition duration-300 hover:scale-105 hover:bg-neutral cursor-pointer tooltip tooltip-accent" data-tip={`See this cocktail`}>
                                             <img src={cocktail.strDrinkThumb} className="rounded-md drop-shadow border border-neutral" />
-                                            <p className="font-semibold text-xl lg:text-lg mt-4 lg:mt-3 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
-                                            <div className="mt-4 lg:mt-3 flex items-center justify-center">
+                                            <p className="font-semibold text-xl lg:text-lg mt-3 lg:mt-2 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
+                                            <div className="mt-3 lg:mt-2 flex items-center justify-center">
                                                 {[1, 2, 3, 4, 5].map((value) => {
                                                     const star = (cocktail.ratings.reduce((acc, cock) => acc + cock.stars, 0)) / cocktail.ratings.length
                                                     if (star >= value) {
@@ -128,8 +128,8 @@ const AllCocktails = () => {
                                     highest.map((cocktail) => (
                                         <a target="_blank" href={`/random-cocktails/${cocktail._id}`} key={`high-${cocktail._id}`} className="group p-6 lg:p-4 my-card transition duration-300 hover:scale-105 hover:bg-neutral cursor-pointer tooltip tooltip-accent" data-tip={`See this cocktail`}>
                                             <img src={cocktail.strDrinkThumb} className="rounded-md drop-shadow border border-neutral" />
-                                            <p className="font-semibold text-xl lg:text-lg mt-4 lg:mt-3 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
-                                            <div className="mt-4 lg:mt-3 flex items-center justify-center">
+                                            <p className="font-semibold text-xl lg:text-lg mt-3 lg:mt-2 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
+                                            <div className="mt-3 lg:mt-2 flex items-center justify-center">
                                                 {[1, 2, 3, 4, 5].map((value) => {
                                                     const star = (cocktail.ratings.reduce((acc, cock) => acc + cock.stars, 0)) / cocktail.ratings.length
                                                     if (star >= value) {
@@ -162,8 +162,8 @@ const AllCocktails = () => {
                                     lowest.map((cocktail) => (
                                         <a target="_blank" href={`/random-cocktails/${cocktail._id}`} key={`high-${cocktail._id}`} className="group p-6 lg:p-4 my-card transition duration-300 hover:scale-105 hover:bg-neutral cursor-pointer tooltip tooltip-accent" data-tip={`See this cocktail`}>
                                             <img src={cocktail.strDrinkThumb} className="rounded-md drop-shadow border border-neutral" />
-                                            <p className="font-semibold text-xl lg:text-lg mt-4 lg:mt-3 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
-                                            <div className="mt-4 lg:mt-3 flex items-center justify-center">
+                                            <p className="font-semibold text-xl lg:text-lg mt-3 lg:mt-2 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
+                                            <div className="mt-3 lg:mt-2 flex items-center justify-center">
                                                 {[1, 2, 3, 4, 5].map((value) => {
                                                     const star = (cocktail.ratings.reduce((acc, cock) => acc + cock.stars, 0)) / cocktail.ratings.length
                                                     if (star >= value) {
@@ -196,7 +196,7 @@ const AllCocktails = () => {
                                     myRatings.map((rating) => (
                                         <a target="_blank" href={`/random-cocktails/${rating.cocktail.id}`} key={`rating-${rating.cocktail.id}`} className="group p-6 lg:p-4 my-card transition duration-300 hover:scale-105 hover:bg-neutral cursor-pointer tooltip tooltip-accent" data-tip={`See this cocktail`}>
                                             <img src={rating.cocktail.strDrinkThumb} className="rounded-md drop-shadow border border-neutral" />
-                                            <p className="font-semibold text-xl lg:text-lg mt-4 lg:mt-3 pointer-events-none text-center group-hover:text-my-orange">{rating.cocktail.name}</p>
+                                            <p className="font-semibold text-xl lg:text-lg mt-3 lg:mt-2 pointer-events-none text-center group-hover:text-my-orange">{rating.cocktail.name}</p>
                                             <div className="my-3 lg:my-2 flex items-center justify-center">
                                                 {[1, 2, 3, 4, 5].map((value) => {
                                                     const star = rating.stars

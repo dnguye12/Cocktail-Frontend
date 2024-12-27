@@ -22,7 +22,7 @@ const LastCocktails = ({ lastCocktails, handleClickOnLastCocktails }) => {
                             (
                                 <div onClick={() => {handleClickOnLastCocktails(cocktail)}} className="group p-6 lg:p-4 my-card transition duration-300 hover:scale-105 hover:bg-neutral cursor-pointer tooltip tooltip-accent" data-tip="See this cocktail again">
                                     <img src={cocktail.strDrinkThumb} className="rounded-md drop-shadow border border-neutral"/>
-                                    <p className="font-semibold text-xl lg:text-lg mt-4 lg:mt-3 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
+                                    <p className="font-semibold text-xl lg:text-lg mt-3 lg:mt-2 pointer-events-none text-center group-hover:text-my-orange">{cocktail.name}</p>
                                     
                                 </div>
                             )

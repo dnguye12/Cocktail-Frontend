@@ -55,6 +55,7 @@ function App() {
         <Route path="/random-cocktails" element={<RandomCocktails />} />
         <Route path="/random-cocktails/:cocktail/*" element={<RandomCocktails />} />
         <Route path="/search" element={<SearchByName />} />
+        <Route path="/search/:searchName/*" element={<SearchByName />} />
         <Route path="/all-cocktails" element={<AllCocktails/>} />
       </Routes>
     </CheckUser>

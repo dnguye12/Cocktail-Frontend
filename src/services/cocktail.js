@@ -90,3 +90,15 @@ export const getHighestRatedCocktails = async() => {
         throw new Error(error)
     }
 }
+
+export const searchCocktailsByName = async(name) => {
+    let query = baseUrl + `/cocktail/search-name?name=${name}`
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    }catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}

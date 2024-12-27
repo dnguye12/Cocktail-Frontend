@@ -11,7 +11,7 @@ const Home = () => {
             <Navbar />
             <div className="2xl:grid hidden 2xl:grid-cols-3 gap-4 px-8 py-4 bg-neutral-950" style={{ height: "calc(100vh - 64px" }}>
                 <Link className="home-card home-card-center shadow-md rounded"
-                    to='/search-by-name'
+                    to='/search'
                     style={{
                         backgroundImage: `url(${HomeLeft})`,
                     }}
@@ -43,7 +43,7 @@ const Home = () => {
 
             <div className="grid grid-cols-1 grid-rows-3 2xl:hidden gap-4 px-8 py-4 bg-neutral-950" style={{ height: "calc(100vh - 64px" }}>
                 <Link
-                    to='/search-by-name'
+                    to='/search'
                     className="home-card home-card-center shadow-md rounded flex justify-center items-center"
                     style={{
                         background: "linear-gradient(90deg, rgba(3,25,59,1) 40%, rgba(88,101,242,1) 100%)"
