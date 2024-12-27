@@ -157,6 +157,28 @@ const RandomCocktails = () => {
                             <div className="my-card py-8 flex flex-col items-center justify-between">
                                 <div className="w-full">
                                     <h1 className="text-accent font-poppins text-5xl font-semibold drop-shadow text-center mb-6">{cocktail.name}</h1>
+                                    {
+                                        cocktail.ratings?.length > 0
+                                        &&
+                                        (
+                                            <div className="mb-6 w-full flex justify-center items-center">
+                                                <div className="">
+                                                    {[1, 2, 3, 4, 5].map((value) => {
+                                                        const star = (cocktail.ratings.reduce((acc, cock) => acc + cock.stars, 0)) / cocktail.ratings.length
+                                                        if (star >= value) {
+                                                            return <FontAwesomeIcon key={`star-${value}`} icon="fa-solid fa-star" className="text-2xl leading-6 text-orange-400" />
+                                                        } else if (star > value - 1 && star < value) {
+                                                            return <FontAwesomeIcon key={`star-${value}`} icon="fa-solid fa-star-half" className="text-2xl leading-6 text-orange-400" />
+                                                        } else {
+                                                            return <FontAwesomeIcon key={`star-${value}`} icon="fa-solid fa-star" className="text-2xl leading-6 text-orange-400 opacity-20" />
+                                                        }
+                                                    }
+                                                    )}
+                                                </div>
+                                                <span className="text-neutral-content ">({cocktail.ratings.length})</span>
+                                            </div>
+                                        )
+                                    }
                                     <div className="w-full mb-6">
                                         <div className="flex justify-center items-center">
                                             <button onClick={() => { setShowIngredients(true) }} className={`btn ${showIngredients ? "btn-accent" : "btn-ghost"} rounded-none transition duration-300 flex-1 tooltip`} data-tip="Click to show the list of ingredients to make this cocktail">Ingredients</button>
@@ -231,7 +253,7 @@ const RandomCocktails = () => {
                     )
                 }
                 {
-                    cocktail && <Reviews cocktail={cocktail} />
+                    cocktail && <Reviews cocktail={cocktail} setCocktail={setCocktail} />
                 }
             </main>
             <Footer />

@@ -15,6 +15,7 @@ import SignInPage from "./components/sign-in/SignInPage";
 import SignUpPage from "./components/sign-up/SignUpPage";
 import { useEffect } from "react";
 import { getUser, postUser } from "./services/user";
+import AllCocktails from "./components/all_cocktails/AllCocktails";
 
 const CheckUser = ({ children }) => {
   const { user, isLoaded } = useUser()
@@ -53,7 +54,8 @@ function App() {
         <Route path="/sign-up/*" element={<SignUpPage />} />
         <Route path="/random-cocktails" element={<RandomCocktails />} />
         <Route path="/random-cocktails/:cocktail/*" element={<RandomCocktails />} />
-        <Route path="/search-by-name" element={<SearchByName />} />
+        <Route path="/search" element={<SearchByName />} />
+        <Route path="/all-cocktails" element={<AllCocktails/>} />
       </Routes>
     </CheckUser>
   )

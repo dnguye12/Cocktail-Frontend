@@ -54,3 +54,39 @@ export const getCocktailByIngredient = async(ing) => {
         throw new Error(error)
     }
 }
+
+export const getMostPopularCocktails = async() => {
+    let query = baseUrl + '/cocktail/popular'
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    }catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}
+
+export const getLowestRatedCocktails = async() => {
+    let query = baseUrl + '/cocktail/lowest-rated'
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    }catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}
+
+export const getHighestRatedCocktails = async() => {
+    let query = baseUrl + '/cocktail/highest-rated'
+
+    try {
+        const request = await dailyAxios.get(query)
+        return request.data
+    }catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}

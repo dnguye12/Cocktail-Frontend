@@ -71,6 +71,18 @@ export const getRatingByCocktail = async (cocktailId) => {
     }
 }
 
+export const getRatingByUser = async (userId) => {
+    let query = baseUrl + `/rating/by-user?userId=${userId}`
+
+    try {
+        const request = await axios.get(query)
+        return request.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 export const getUserHasRatedCocktail = async (userId, cocktailId) => {
     let query = baseUrl + `/rating/user-has-rated-cocktail?userId=${userId}&cocktailId=${cocktailId}`
 

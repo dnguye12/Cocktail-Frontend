@@ -6,7 +6,7 @@ import { deleteRating, getRatingByCocktail, getUserHasRatedCocktail, postRating,
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from 'moment';
 
-const Reviews = ({ cocktail }) => {
+const Reviews = ({ cocktail, setCocktail }) => {
     const { isLoaded, user } = useUser()
 
     const [isLoading, setIsLoading] = useState(false)
@@ -46,6 +46,7 @@ const Reviews = ({ cocktail }) => {
             const fetchComments = async () => {
                 try {
                     const request = await getRatingByCocktail(cocktail.id)
+                    setCocktail(request)
                     setComments(request.ratings)
                     setFetchedComments(true)
                 } catch (error) {
@@ -56,7 +57,7 @@ const Reviews = ({ cocktail }) => {
 
             fetchComments()
         }
-    }, [cocktail, fetchedComments])
+    }, [cocktail, fetchedComments, setCocktail])
 
     const handleChange = (e) => {
         setContent(e.target.value)
@@ -116,9 +117,6 @@ const Reviews = ({ cocktail }) => {
 
     const handleEdit = async (e) => {
         e.preventDefault()
-        console.log(editContent)
-        console.log(editRating)
-        console.log(myComment)
         try {
             setIsLoading(true)
             const request = await updateRating(myComment.id, editContent, editRating)
